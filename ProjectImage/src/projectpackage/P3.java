@@ -54,10 +54,7 @@ public class P3 extends JFrame {
 				for (int col = 0; col < width; col++) {
 					g.setColor(new Color(pixels[(x)], pixels[(x)+1], pixels[(x)+2]));
 					x+=3;
-					if(counter == 3) {
-						counter = 0;
-						g.fillRect(row,col, 1, 1);
-					}
+					g.fillRect(col,row, 1, 1);
 					counter++;
 				}
 			}
