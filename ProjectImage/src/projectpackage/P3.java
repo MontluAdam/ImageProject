@@ -1,4 +1,4 @@
-package p3package;
+package p3march9;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -24,9 +24,9 @@ public class P3 extends JFrame {
 			width = Integer.parseInt(input.next());
 			height = Integer.parseInt(input.next());
 			maxVal = Integer.parseInt(input.next());
-			pixels = new int [width*height];
+			pixels = new int [width*height*3];
 
-			for (int i = 0; i < width*height; i++)
+			for (int i = 0; i < width*height*3; i++)
 				pixels[i] = Integer.parseInt(input.next());
 
 			dp = new DrawingPanel2();
@@ -50,7 +50,7 @@ public class P3 extends JFrame {
 			super.paintComponent(g);
 			int x = 0;
 			int counter = 0;
-			for (int row = 0; row < height/3; row++) {
+			for (int row = 0; row < height; row++) {
 				for (int col = 0; col < width; col++) {
 					g.setColor(new Color(pixels[(x)], pixels[(x)+1], pixels[(x)+2]));
 					x+=3;
