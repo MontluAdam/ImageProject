@@ -2,6 +2,7 @@ package p6package;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,23 +19,24 @@ public class P6 extends JFrame {
 
 		try{
 			FileInputStream fis = 
-				new FileInputStream("bell_206.ppm");
+				new FileInputStream("underwater_bmx.ppm");
+			BufferedInputStream bis = new BufferedInputStream(fis);
 		   byte [] magicNum = new byte[2];
-			fis.read(magicNum);
+			bis.read(magicNum);
 
-			char chByte = (char) fis.read();
+			char chByte = (char) bis.read();
 			while(Character.isWhitespace(chByte))
-				chByte = (char) fis.read();
+				chByte = (char) bis.read();
 
 			byte fb = (byte) chByte;
 			int count = 1;
-			byte [] w = new byte[3];
+			byte [] w = new byte[4];
 			w[0] = fb; 
 
-			byte aByte = (byte) fis.read();
+			byte aByte = (byte) bis.read();
 			while(!Character.isWhitespace(aByte)){
 				w[count++] = aByte;
-				aByte = (byte) fis.read();
+				aByte = (byte) bis.read();
 			}
 
 			int i = 0;
@@ -43,11 +45,11 @@ public class P6 extends JFrame {
 				strWidth = strWidth + (w[i++]-48);
 			
 			count = 0;
-			byte [] h = new byte[3];
-			aByte = (byte) fis.read();
+			byte [] h = new byte[4];
+			aByte = (byte) bis.read();
 			while(!Character.isWhitespace(aByte)){
 				h[count++] = aByte;
-				aByte = (byte) fis.read();
+				aByte = (byte) bis.read();
 			}
 			
 			i = 0;
@@ -60,14 +62,14 @@ public class P6 extends JFrame {
 
 			count = 0;
 			byte [] mv = new byte[3];
-			aByte = (byte) fis.read();
+			aByte = (byte) bis.read();
 			while(!Character.isWhitespace(aByte)){
 				mv[count++] = aByte;
-				aByte = (byte) fis.read();
+				aByte = (byte) bis.read();
 			}
 			
 			while(Character.isWhitespace(aByte))
-				aByte = (byte) fis.read();
+				aByte = (byte) bis.read();
 			
 			i = 0;
 			String strmaxVal = "";
@@ -76,7 +78,7 @@ public class P6 extends JFrame {
 
 			pixs = new int [width*height*3];
 			for (int j = 1; j < height*width*3; j++) {
-				pixs[j] = (fis.read());
+				pixs[j] = (bis.read());
 			}
 
 			dp = new DrawingPan();
