@@ -66,13 +66,13 @@ public class P4 extends JFrame{
 
 			bitsToSkip = (8-(width % 8));
 			
-			for (int j = 1; j < pixs.length; j++) {
+			for (int j = 0; j < pixs.length; j++) {
 				pixs[j] = (bis.read());
 			}
 			int c = 0;
 			for(int j = 0; j < width*height; j++) {
-				for (int k = 7; k > 0; k--) {
-					barray[c] = getBit(pixs[j]);
+				for (int k = 0; k <= 7; k++) {
+					barray[c] = getBit(j, k);
 					c++;
 				}
 			}
@@ -83,7 +83,7 @@ public class P4 extends JFrame{
 		catch (FileNotFoundException e) {} 
 		catch (IOException e) { }
 		
-		setSize(width, height);
+		setSize(800, 600);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -110,9 +110,9 @@ public class P4 extends JFrame{
 		return (num == 1) ? new Color(0, 0, 0): new Color(255, 255, 255);
 	}
 	
-	int getBit(int allBits) {
-		int index = allBits / 8;
-		int bitNum = allBits % 8;
+	int getBit(int allBits, int k) {
+		int index = allBits;
+		int bitNum = k;
 		int temp = ((pixs[index] >>> (7-bitNum)) & 1);
 		return temp;
 	}

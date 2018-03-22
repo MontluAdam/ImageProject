@@ -1,4 +1,4 @@
-package p6package;
+package projectpackage;
 
 import java.awt.Color;
 import java.awt.Graphics;
